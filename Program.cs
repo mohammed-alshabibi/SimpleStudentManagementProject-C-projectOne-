@@ -13,6 +13,7 @@
             addNewStudentRecord();
             displayStudentRecord();
             searchStudentRecord();
+            calculateAverageMarks();
         }
         static void addNewStudentRecord()
         {
@@ -82,7 +83,29 @@
                 }
             }
         }
-    
-    
+        static void calculateAverageMarks()
+        {
+            double totalMarks = 0;
+            for (int i = 0; i < studentName.Length; i++)
+            {
+                totalMarks += marks[i];
+            }
+            double averageMarks = totalMarks / studentName.Length;
+            Console.WriteLine($"Average Marks: {Math.Round(averageMarks,2)}");
+        }
+        static void maxMarkStudent()
+        {
+            double maxMark = marks[0];
+            string name = studentName[0];
+            for (int i = 0; i < studentName.Length; i++)
+            {
+                if (marks[i] > maxMark)
+                {
+                    maxMark = marks[i];
+                    name = studentName[i];
+                }
+            }
+            Console.WriteLine($"student {name} got Maximum Marks: {maxMark}");
+        }
     }
 }
