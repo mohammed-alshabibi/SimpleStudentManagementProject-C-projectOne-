@@ -16,6 +16,7 @@
             calculateAverageMarks();
             maxMarkStudent();
             sortStudentMarks();
+            deleteStudentRecord();
         }
         static void addNewStudentRecord()
         {
@@ -133,7 +134,7 @@
             Console.WriteLine("Sorted Marks: ");
             for (int i = 0; i < studentName.Length; i++)
             {
-
+                Console.WriteLine("------------------------------");
                 Console.WriteLine($"Student Name: {studentName[i]}");
                 Console.WriteLine($"Student Age: {studentAge[i]}");
                 Console.WriteLine($"Student Marks: {marks[i]}");
@@ -141,5 +142,34 @@
 
             }
         }
+        static void deleteStudentRecord()
+        {
+            Console.WriteLine("Enter student name to delete: ");
+            string deleteName = Console.ReadLine();
+            for (int i = 0; i < studentName.Length; i++)
+            {
+                if (studentName[i] == deleteName.ToLower())
+                {
+                    for (int j = i; j < studentName.Length - 1; j++)
+                    {
+                        studentName[j] = studentName[j + 1];
+                        studentAge[j] = studentAge[j + 1];
+                        marks[j] = marks[j + 1];
+                        dateTimes[j] = dateTimes[j + 1];
+                    }
+                    // Clear the last element
+                    studentName[studentName.Length - 1] = null;
+                    studentAge[studentAge.Length - 1] = 0;
+                    marks[marks.Length - 1] = 0;
+                    dateTimes[dateTimes.Length - 1] = DateTime.MinValue;
+                    count--;
+                    break;
+                }
+            }
+            Console.WriteLine("Student Record Deleted Successfully ");
+            Console.WriteLine("new student record: "+ string.Join(",",studentName));
+        }
+
+
     }
 }
