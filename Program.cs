@@ -14,6 +14,8 @@
             displayStudentRecord();
             searchStudentRecord();
             calculateAverageMarks();
+            maxMarkStudent();
+            sortStudentMarks();
         }
         static void addNewStudentRecord()
         {
@@ -106,6 +108,38 @@
                 }
             }
             Console.WriteLine($"student {name} got Maximum Marks: {maxMark}");
+        }
+        static void sortStudentMarks()
+        {
+            for (int i = 0; i < studentName.Length; i++)
+            {
+                for (int j = i + 1; j < studentName.Length; j++)
+                {
+                    if (marks[i] > marks[j])
+                    {
+                        double temp = marks[i];
+                        marks[i] = marks[j];
+                        marks[j] = temp;
+                        string tempName = studentName[i];
+                        studentName[i] = studentName[j];
+                        studentName[j] = tempName;
+                        double tempAge = studentAge[i];
+                        studentAge[i] = studentAge[j];
+                        studentAge[j] = (int)tempAge;
+
+                    }
+                }
+            }
+            Console.WriteLine("Sorted Marks: ");
+            for (int i = 0; i < studentName.Length; i++)
+            {
+
+                Console.WriteLine($"Student Name: {studentName[i]}");
+                Console.WriteLine($"Student Age: {studentAge[i]}");
+                Console.WriteLine($"Student Marks: {marks[i]}");
+                
+
+            }
         }
     }
 }
