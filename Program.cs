@@ -20,7 +20,7 @@
             for (int i = 0; i < studentName.Length; i++)
             {
                 Console.WriteLine($"Enter student name {count +1}: ");
-                studentName[i] = Console.ReadLine();
+                studentName[i] = Console.ReadLine().ToLower();
                 Console.WriteLine("Enter student age: ");
                 studentAge[i] = int.Parse(Console.ReadLine());
                 if (studentAge[i] < 21)
@@ -72,7 +72,7 @@
             string searchName = Console.ReadLine();
             for (int i = 0; i < studentName.Length; i++)
             {
-                if (studentName[i] == searchName)
+                if (studentName[i] == searchName.ToLower())
                 {
                     Console.WriteLine($"----------Student Record {i + 1} ------------");
                     Console.WriteLine($"Student Name: {studentName[i]}");
