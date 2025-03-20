@@ -12,6 +12,7 @@
 
             addNewStudentRecord();
             displayStudentRecord();
+            searchStudentRecord();
         }
         static void addNewStudentRecord()
         {
@@ -65,6 +66,23 @@
                 
             }
         }
-
+        static void searchStudentRecord()
+        {
+            Console.WriteLine("Enter student name to search: ");
+            string searchName = Console.ReadLine();
+            for (int i = 0; i < studentName.Length; i++)
+            {
+                if (studentName[i] == searchName)
+                {
+                    Console.WriteLine($"----------Student Record {i + 1} ------------");
+                    Console.WriteLine($"Student Name: {studentName[i]}");
+                    Console.WriteLine($"Student Age: {studentAge[i]}");
+                    Console.WriteLine($"Student Marks: {marks[i]}");
+                    Console.WriteLine($"Date and Time: {dateTimes[i]}");
+                }
+            }
+        }
+    
+    
     }
 }
