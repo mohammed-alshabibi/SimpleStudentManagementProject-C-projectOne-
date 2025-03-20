@@ -11,6 +11,7 @@
         {
 
             addNewStudentRecord();
+            displayStudentRecord();
         }
         static void addNewStudentRecord()
         {
@@ -35,21 +36,35 @@
                 }
                 dateTimes[i] = DateTime.Now;
                 count++;
-                Console.WriteLine("add another student record");
+                
                 if (i > count)
                 {
                     break;
                 }
-                
-               
+                Console.WriteLine("add another student record");
+
+
             }
             
             
            
-            Console.WriteLine( string.Join(",",studentName));
-            Console.WriteLine(string.Join(",",studentAge));
-            Console.WriteLine(string.Join(",", marks));
-            Console.WriteLine(string.Join(",", dateTimes));
+            //Console.WriteLine( string.Join(",",studentName));
+            //Console.WriteLine(string.Join(",",studentAge));
+            //Console.WriteLine(string.Join(",", marks));
+            //Console.WriteLine(string.Join(",", dateTimes));
         }
+        static void displayStudentRecord()
+        {
+            for (int i = 0; i < studentName.Length; i++)
+            {
+                Console.WriteLine($"----------Student Record {i + 1} ------------");
+                Console.WriteLine($"Student Name: {studentName[i]}");
+                Console.WriteLine($"Student Age: {studentAge[i]}");
+                Console.WriteLine($"Student Marks: {marks[i]}");
+                Console.WriteLine($"Date and Time: {dateTimes[i]}");
+                
+            }
+        }
+
     }
 }
