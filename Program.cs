@@ -10,8 +10,8 @@
 
         static void Main(string[] args)
         {
-            // Ensure at least one student record is added
-            Console.WriteLine("Please add at least one student record.");
+            
+            Console.WriteLine("Please add student record.");
             addNewStudentRecord();
 
             bool exit = false;
@@ -223,7 +223,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("the name not found");
+                    Console.WriteLine("The Student Name Not Found");
                 }
                 break;
             }
