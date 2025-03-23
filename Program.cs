@@ -7,23 +7,67 @@
         static double[] marks = new double[10];
         static DateTime[] dateTimes = new DateTime[10];
         static int count = 0;
+
         static void Main(string[] args)
         {
-
+            // Ensure at least one student record is added
+            Console.WriteLine("Please add at least one student record.");
             addNewStudentRecord();
-            displayStudentRecord();
-            searchStudentRecord();
-            calculateAverageMarks();
-            maxMarkStudent();
-            sortStudentMarks();
-            deleteStudentRecord();
+
+            bool exit = false;
+            while (!exit)
+            {
+                
+                Console.WriteLine("Menu:");
+                Console.WriteLine("1. Add New Student Record");
+                Console.WriteLine("2. Display Student Records");
+                Console.WriteLine("3. Search Student Record");
+                Console.WriteLine("4. Calculate Average Marks");
+                Console.WriteLine("5. Find Student with Maximum Marks");
+                Console.WriteLine("6. Sort Student Marks");
+                Console.WriteLine("7. Delete Student Record");
+                Console.WriteLine("8. Exit");
+                Console.Write("Select an option: ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        addNewStudentRecord();
+                        break;
+                    case "2":
+                        displayStudentRecord();
+                        break;
+                    case "3":
+                        searchStudentRecord();
+                        break;
+                    case "4":
+                        calculateAverageMarks();
+                        break;
+                    case "5":
+                        maxMarkStudent();
+                        break;
+                    case "6":
+                        sortStudentMarks();
+                        break;
+                    case "7":
+                        deleteStudentRecord();
+                        break;
+                    case "8":
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option. Please try again.");
+                        break;
+                }
+            }
         }
+
         static void addNewStudentRecord()
         {
-           
-            for (int i = 0; i < studentName.Length; i++)
+            for (int i = count; i < studentName.Length; i++)
             {
-                Console.WriteLine($"Enter student name {count +1}: ");
+                Console.WriteLine($"Enter student name {count + 1}: ");
                 studentName[i] = Console.ReadLine().ToLower();
                 Console.WriteLine("Enter student age: ");
                 studentAge[i] = int.Parse(Console.ReadLine());
@@ -41,40 +85,32 @@
                 }
                 dateTimes[i] = DateTime.Now;
                 count++;
-                
-                if (i > count)
+
+                Console.WriteLine("Add another student record? (y/n)");
+                if (Console.ReadLine().ToLower() != "y")
                 {
                     break;
                 }
-                Console.WriteLine("add another student record");
-
-
             }
-            
-            
-           
-            //Console.WriteLine( string.Join(",",studentName));
-            //Console.WriteLine(string.Join(",",studentAge));
-            //Console.WriteLine(string.Join(",", marks));
-            //Console.WriteLine(string.Join(",", dateTimes));
         }
+
         static void displayStudentRecord()
         {
-            for (int i = 0; i < studentName.Length; i++)
+            for (int i = 0; i < count; i++)
             {
                 Console.WriteLine($"----------Student Record {i + 1} ------------");
                 Console.WriteLine($"Student Name: {studentName[i]}");
                 Console.WriteLine($"Student Age: {studentAge[i]}");
                 Console.WriteLine($"Student Marks: {marks[i]}");
-                Console.WriteLine($"Date and Time: {dateTimes[i]}");
-                
+                Console.WriteLine($"Date and Time enrollment : {dateTimes[i]}");
             }
         }
+
         static void searchStudentRecord()
         {
             Console.WriteLine("Enter student name to search: ");
             string searchName = Console.ReadLine();
-            for (int i = 0; i < studentName.Length; i++)
+            for (int i = 0; i < count; i++)
             {
                 if (studentName[i] == searchName.ToLower())
                 {
@@ -82,25 +118,32 @@
                     Console.WriteLine($"Student Name: {studentName[i]}");
                     Console.WriteLine($"Student Age: {studentAge[i]}");
                     Console.WriteLine($"Student Marks: {marks[i]}");
-                    Console.WriteLine($"Date and Time: {dateTimes[i]}");
+                    Console.WriteLine($"Date and Time enrollment : {dateTimes[i]}");
                 }
+                else
+                {
+                    Console.WriteLine("Student Record not found");
+                }
+
             }
         }
+
         static void calculateAverageMarks()
         {
             double totalMarks = 0;
-            for (int i = 0; i < studentName.Length; i++)
+            for (int i = 0; i < count; i++)
             {
                 totalMarks += marks[i];
             }
-            double averageMarks = totalMarks / studentName.Length;
-            Console.WriteLine($"Average Marks: {Math.Round(averageMarks,2)}");
+            double averageMarks = totalMarks / count;
+            Console.WriteLine($"Average Marks: {Math.Round(averageMarks, 2)}");
         }
+
         static void maxMarkStudent()
         {
             double maxMark = marks[0];
             string name = studentName[0];
-            for (int i = 0; i < studentName.Length; i++)
+            for (int i = 0; i < count; i++)
             {
                 if (marks[i] > maxMark)
                 {
@@ -108,13 +151,14 @@
                     name = studentName[i];
                 }
             }
-            Console.WriteLine($"student {name} got Maximum Marks: {maxMark}");
+            Console.WriteLine($"Student {name} got Maximum Marks: {maxMark}");
         }
+
         static void sortStudentMarks()
         {
-            for (int i = 0; i < studentName.Length; i++)
+            for (int i = 0; i < count; i++)
             {
-                for (int j = i + 1; j < studentName.Length; j++)
+                for (int j = i + 1; j < count; j++)
                 {
                     if (marks[i] > marks[j])
                     {
@@ -124,33 +168,34 @@
                         string tempName = studentName[i];
                         studentName[i] = studentName[j];
                         studentName[j] = tempName;
-                        double tempAge = studentAge[i];
+                        int tempAge = studentAge[i];
                         studentAge[i] = studentAge[j];
-                        studentAge[j] = (int)tempAge;
-
+                        studentAge[j] = tempAge;
+                        DateTime tempDate = dateTimes[i];
+                        dateTimes[i] = dateTimes[j];
+                        dateTimes[j] = tempDate;
                     }
                 }
             }
             Console.WriteLine("Sorted Marks: ");
-            for (int i = 0; i < studentName.Length; i++)
+            for (int i = 0; i < count; i++)
             {
                 Console.WriteLine("------------------------------");
                 Console.WriteLine($"Student Name: {studentName[i]}");
                 Console.WriteLine($"Student Age: {studentAge[i]}");
                 Console.WriteLine($"Student Marks: {marks[i]}");
-                
-
             }
         }
+
         static void deleteStudentRecord()
         {
             Console.WriteLine("Enter student name to delete: ");
             string deleteName = Console.ReadLine();
-            for (int i = 0; i < studentName.Length; i++)
+            for (int i = 0; i < count; i++)
             {
                 if (studentName[i] == deleteName.ToLower())
                 {
-                    for (int j = i; j < studentName.Length - 1; j++)
+                    for (int j = i; j < count - 1; j++)
                     {
                         studentName[j] = studentName[j + 1];
                         studentAge[j] = studentAge[j + 1];
@@ -158,18 +203,15 @@
                         dateTimes[j] = dateTimes[j + 1];
                     }
                     // Clear the last element
-                    studentName[studentName.Length - 1] = null;
-                    studentAge[studentAge.Length - 1] = 0;
-                    marks[marks.Length - 1] = 0;
-                    dateTimes[dateTimes.Length - 1] = DateTime.MinValue;
+                    studentName[count - 1] = null;
+                    studentAge[count - 1] = 0;
+                    marks[count - 1] = 0;
+                    dateTimes[count - 1] = DateTime.MinValue;
                     count--;
                     break;
                 }
             }
-            Console.WriteLine("Student Record Deleted Successfully ");
-            Console.WriteLine("new student record: "+ string.Join(",",studentName));
+            Console.WriteLine("Student Record Deleted Successfully");
         }
-
-
     }
 }
