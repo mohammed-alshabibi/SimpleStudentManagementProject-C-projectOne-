@@ -189,10 +189,19 @@
 
         static void deleteStudentRecord()
         {
-            Console.WriteLine("Enter student name to delete: ");
-            string deleteName = Console.ReadLine();
             for (int i = 0; i < count; i++)
             {
+                Console.WriteLine("------------------------------");
+                Console.WriteLine($"Student Name: {studentName[i]}");
+                Console.WriteLine($"Student Age: {studentAge[i]}");
+                Console.WriteLine($"Student Marks: {marks[i]}");
+            }
+            Console.WriteLine("Enter student name to delete: ");
+            string deleteName = Console.ReadLine();
+            
+            for (int i = 0; i < count; i++)
+            {
+                
                 if (studentName[i] == deleteName.ToLower())
                 {
                     for (int j = i; j < count - 1; j++)
@@ -208,10 +217,17 @@
                     marks[count - 1] = 0;
                     dateTimes[count - 1] = DateTime.MinValue;
                     count--;
+                    Console.WriteLine("Student Record Deleted Successfully");
                     break;
+                    
                 }
+                else
+                {
+                    Console.WriteLine("the name not found");
+                }
+                break;
             }
-            Console.WriteLine("Student Record Deleted Successfully");
+            
         }
     }
 }
