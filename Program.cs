@@ -67,15 +67,21 @@
         {
             for (int i = count; i < studentName.Length; i++)
             {
+                string name;
+                int age;
+                double mark;
+
                 Console.WriteLine($"Enter student name {count + 1}: ");
                 studentName[i] = Console.ReadLine().ToLower();
                 Console.WriteLine("Enter student age: ");
                 studentAge[i] = int.Parse(Console.ReadLine());
                 if (studentAge[i] < 21)
                 {
+
                     Console.WriteLine("Student age must be greater than 21");
                     break;
                 }
+
                 Console.WriteLine("Enter student marks: ");
                 marks[i] = double.Parse(Console.ReadLine());
                 if (marks[i] < 0 || marks[i] > 100)
@@ -112,13 +118,14 @@
             string searchName = Console.ReadLine();
             for (int i = 0; i < count; i++)
             {
-                if (studentName[i] == searchName.ToLower())
+                if (studentName[i].ToLower() == searchName.ToLower())
                 {
                     Console.WriteLine($"----------Student Record {i + 1} ------------");
                     Console.WriteLine($"Student Name: {studentName[i]}");
                     Console.WriteLine($"Student Age: {studentAge[i]}");
                     Console.WriteLine($"Student Marks: {marks[i]}");
                     Console.WriteLine($"Date and Time enrollment : {dateTimes[i]}");
+                    break;
                 }
                 else
                 {
