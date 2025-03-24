@@ -34,7 +34,7 @@
                 Console.WriteLine("8. Exit");
                 Console.Write("Select an option: ");
                 string choice = Console.ReadLine();
-
+                
                 switch (choice)
                 {
                     case "1":
@@ -107,6 +107,9 @@
                     Console.WriteLine($"Enter student name {count + 1}: ");
                     studentName[i] = Console.ReadLine().ToLower();
                     Console.WriteLine("Enter student age: ");
+                // Handling input fromating error exceptions
+                try
+                {
                     studentAge[i] = int.Parse(Console.ReadLine());
                     if (studentAge[i] < 21)
                     {
@@ -122,11 +125,17 @@
                         Console.WriteLine("Student marks must be between 0 and 100");
                         break;
                     }
+                }
+                catch(FormatException e)
+                {
+                    Console.WriteLine("Invalide input, " + e.Message + " Please try again to enter integer input: ");
+                }
+                   
                     dateTimes[i] = DateTime.Now;
                     count++;
 
                     Console.WriteLine("Add another student record? (y/n)");
-                    if (Console.ReadLine().ToLower() != "y")
+                    if (Console.ReadLine() != "y" || Console.ReadLine() != "Y")
                     {
                         break;
                     }
@@ -170,13 +179,22 @@
         // Calculate average marks function
         static void calculateAverageMarks()
         {
-            double totalMarks = 0;
-            for (int i = 0; i < count; i++)
+            // Try to handling any error that may occur
+            try
             {
-                totalMarks += marks[i];
+                double totalMarks = 0;
+                for (int i = 0; i < count; i++)
+                {
+                    totalMarks += marks[i];
+                }
+                double averageMarks = totalMarks / count;
+                Console.WriteLine($"Average Marks: {Math.Round(averageMarks, 2)}");
             }
-            double averageMarks = totalMarks / count;
-            Console.WriteLine($"Average Marks: {Math.Round(averageMarks, 2)}");
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+           
         }
         // find student with maximum marks function
         static void maxMarkStudent()
