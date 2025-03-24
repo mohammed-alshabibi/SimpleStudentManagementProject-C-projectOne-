@@ -2,12 +2,17 @@
 {
     internal class Program
     {
+        // Declear arrays to store student records
         static string[] studentName = new string[10];
         static int[] studentAge = new int[10];
         static double[] marks = new double[10];
         static DateTime[] dateTimes = new DateTime[10];
         static int count = 0;
-
+        static string CurrentStudenName;
+        static int CurrentStudenAge=0;
+        static double CurrentStudenMark=0;
+        static int trails = 0;
+        // Main function
         static void Main(string[] args)
         {
             
@@ -62,44 +67,72 @@
                 }
             }
         }
-
+        // Add new student record function
         static void addNewStudentRecord()
         {
-            for (int i = count; i < studentName.Length; i++)
-            {
-                string name;
-                int age;
-                double mark;
+            //if (count == 10)
+            //{
+            //    Console.WriteLine("Student record is full");
+                
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"Enter student name {count + 1}: ");
+            //    CurrentStudenName = Console.ReadLine().ToLower();
+            //    Console.WriteLine("Enter student age: ");
+            //    CurrentStudenAge = int.Parse(Console.ReadLine());
+            //    Console.WriteLine("Enter student marks: ");
+            //    CurrentStudenMark = double.Parse(Console.ReadLine());
+                
+            //    do
+            //    {
+            //        Console.WriteLine("Enter student age: ");
+            //        CurrentStudenAge = int.Parse(Console.ReadLine());
+            //        trails++;
+            //        if (trails == 3)
+            //        {
+            //            Console.WriteLine("You have reached the maximum number of trials");
+            //            break;
+            //        }
+            //    }
+            //    while (CurrentStudenAge < 21);
 
-                Console.WriteLine($"Enter student name {count + 1}: ");
-                studentName[i] = Console.ReadLine().ToLower();
-                Console.WriteLine("Enter student age: ");
-                studentAge[i] = int.Parse(Console.ReadLine());
-                if (studentAge[i] < 21)
+                
+            //}
+                // Loop through the student record array
+                for (int i = count; i < studentName.Length; i++)
                 {
 
-                    Console.WriteLine("Student age must be greater than 21");
-                    break;
-                }
 
-                Console.WriteLine("Enter student marks: ");
-                marks[i] = double.Parse(Console.ReadLine());
-                if (marks[i] < 0 || marks[i] > 100)
-                {
-                    Console.WriteLine("Student marks must be between 0 and 100");
-                    break;
-                }
-                dateTimes[i] = DateTime.Now;
-                count++;
+                    Console.WriteLine($"Enter student name {count + 1}: ");
+                    studentName[i] = Console.ReadLine().ToLower();
+                    Console.WriteLine("Enter student age: ");
+                    studentAge[i] = int.Parse(Console.ReadLine());
+                    if (studentAge[i] < 21)
+                    {
 
-                Console.WriteLine("Add another student record? (y/n)");
-                if (Console.ReadLine().ToLower() != "y")
-                {
-                    break;
+                        Console.WriteLine("Student age must be greater than 21");
+                        break;
+                    }
+
+                    Console.WriteLine("Enter student marks: ");
+                    marks[i] = double.Parse(Console.ReadLine());
+                    if (marks[i] < 0 || marks[i] > 100)
+                    {
+                        Console.WriteLine("Student marks must be between 0 and 100");
+                        break;
+                    }
+                    dateTimes[i] = DateTime.Now;
+                    count++;
+
+                    Console.WriteLine("Add another student record? (y/n)");
+                    if (Console.ReadLine().ToLower() != "y")
+                    {
+                        break;
+                    }
                 }
-            }
         }
-
+        // Display student record function
         static void displayStudentRecord()
         {
             for (int i = 0; i < count; i++)
@@ -111,7 +144,7 @@
                 Console.WriteLine($"Date and Time enrollment : {dateTimes[i]}");
             }
         }
-
+        // Search student record function 
         static void searchStudentRecord()
         {
             Console.WriteLine("Enter student name to search: ");
@@ -134,7 +167,7 @@
 
             }
         }
-
+        // Calculate average marks function
         static void calculateAverageMarks()
         {
             double totalMarks = 0;
@@ -145,7 +178,7 @@
             double averageMarks = totalMarks / count;
             Console.WriteLine($"Average Marks: {Math.Round(averageMarks, 2)}");
         }
-
+        // find student with maximum marks function
         static void maxMarkStudent()
         {
             double maxMark = marks[0];
@@ -160,7 +193,7 @@
             }
             Console.WriteLine($"Student {name} got Maximum Marks: {maxMark}");
         }
-
+        // Sort student marks function
         static void sortStudentMarks()
         {
             for (int i = 0; i < count; i++)
@@ -193,7 +226,7 @@
                 Console.WriteLine($"Student Marks: {marks[i]}");
             }
         }
-
+        // Delete student record function
         static void deleteStudentRecord()
         {
             for (int i = 0; i < count; i++)
